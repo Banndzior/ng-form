@@ -1,0 +1,55 @@
+<form #myForm="ngForm" (ngSubmit)="register(myForm)">
+    <label>
+        Imię:
+        <input name="firstName2"
+            type="text"
+            [(ngModel)]="user.firstName"
+            required />
+        <div *ngIf="myForm.controls?.firstName?.errors?.required" class="error-msg">Te pole jest wymagane</div>
+    </label>
+    <br />
+    <label>
+        Nazwisko:
+        <input name="lastName"
+            type="text"
+            [(ngModel)]="user.lastName"
+            required />
+        <div *ngIf="myForm.controls?.lastName?.errors?.required" class="error-msg">Te pole jest wymagane</div>
+    </label>
+    <br />
+    <label>
+        Email:
+        <input name="email"
+            type="text"
+            [(ngModel)]="user.email"
+            email />
+        <div *ngIf="myForm.controls?.email?.errors?.email" class="error-msg">To ma byc email</div>   
+    </label>
+    <br />
+    <label>
+        Telefon:
+        <input name="phoneNumber"
+            type="number"
+            [(ngModel)]="user.phoneNumber" />
+    </label>
+    <br />
+    <label>
+        Plec:
+        <label>
+            <input type="radio" name="sex"
+                value="0"
+                [(ngModel)]="user.sex" />
+                Kobieta
+        </label>
+        <label>
+            <input type="radio" name="sex"
+                value="1"
+                [(ngModel)]="user.sex" />
+                Facet
+        </label>
+    </label>
+    <br />
+    <button type="submit"
+        >Zapisz</button>
+        <!-- [disabled]="myForm.invalid" -->
+</form>

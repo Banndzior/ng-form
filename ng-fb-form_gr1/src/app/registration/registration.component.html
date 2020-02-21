@@ -1,0 +1,42 @@
+<form #myForm="ngForm"
+    [ngFormOptions]="{ updateOn: 'submit' }"
+    (ngSubmit)="register(myForm.value, myForm)">
+    <label>Imie:</label>
+    <input type="text" name="firstName" ngModel #firstName="ngModel" required />
+    <div class="error" *ngIf="firstName.hasError('required')">
+        Pole jest wymagane
+    </div>
+    <br />
+    <label>Nazwisko:</label>
+    <input type="text" name="lastName" ngModel #lastName="ngModel" required />
+    <div class="error" *ngIf="lastName.hasError('required')">
+        Pole jest wymagane
+    </div>
+    <br />
+    <label>Email:</label>
+    <input type="text" name="email" ngModel email #email="ngModel" />
+    <div class="error" *ngIf="email.hasError('email')">
+        Pole ma byc emailem
+    </div>
+    <br />
+    <label>Telefon:</label>
+    <input type="text" name="phoneNumber" ngModel pattern="[0-9]*" #phoneNumber="ngModel" />
+    <div class="error" *ngIf="phoneNumber.hasError('pattern')">
+        Pole ma byc numerem telefonu
+    </div>
+    <br />
+    <label>Płeć:</label>
+    <label>
+        <input type="radio" name="sex" value="1" ngModel required />
+        Kobieta
+    </label>
+    <label>
+        <input type="radio" name="sex" value="0" ngModel required />
+        Mężczyzna
+    </label>
+    <br />
+    <button type="reset">Reset</button>
+    <button type="submit" [disabled]="myForm.invalid && false">
+        Zapisz
+    </button>
+</form>
