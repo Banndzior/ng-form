@@ -1,0 +1,37 @@
+<form [formGroup]="myFormGroup"
+    (ngSubmit)="register()">
+    <legend>REACT-FORM</legend>
+    <label>Imie:</label>
+    <input type="text" formControlName="firstName" />
+    <div class="error"
+        *ngIf="myFormGroup.get('firstName').hasError('required')
+            && myFormGroup.get('firstName').touched">
+        Pole jest wymagane
+    </div>
+    <br />
+    <label>Nazwisko:</label>
+    <input type="text" formControlName="lastName" />
+    <br />
+    <label>Email:</label>
+    <input type="text" formControlName="email" />
+    <br />
+    <label>Telefon:</label>
+    <input type="text" formControlName="phoneNumber" />
+    <br />
+    <label>Płeć:</label>
+    <label>
+        <input type="radio" formControlName="sex" value="1" />
+        Kobieta
+    </label>
+    <label>
+        <input type="radio" formControlName="sex" value="0" />
+        Mężczyzna
+    </label>
+    <br />
+    <button type="reset">Reset</button>
+    <button type="submit" [disabled]="myFormGroup.invalid">
+        Zapisz
+    </button>
+</form>
+
+<pre>{{ myFormGroup.value | json }}</pre>

@@ -1,0 +1,60 @@
+<form 
+    [formGroup]="myFormGroup"
+    (ngSubmit)="register()">
+    <label>
+        Imię:
+        <input type="text"
+            formControlName="firstName" />
+        <div class="error"
+            *ngIf="myFormGroup.get('firstName').hasError('required') && myFormGroup.get('firstName').touched">
+            Pole jest wymagane
+        </div>
+        <div class="error"
+            *ngIf="myFormGroup.get('firstName').hasError('maxlength') && myFormGroup.get('firstName').touched">
+            Pole jest za dlugie
+        </div>
+    </label>
+    <br />
+    <label>
+        Nazwisko:
+        <input type="text"
+            formControlName="lastName" />
+    </label>
+    <br />
+    <label>
+        Email:
+        <input type="text"
+            formControlName="email" />
+    </label>
+    <br />
+    <label>
+        Telefon:
+        <input type="number"
+            formControlName="phoneNumber" />
+    </label>
+    <br />
+    <label>
+        Plec:
+        <label>
+            <input type="radio"
+                formControlName="sex"
+                value="0" />
+                Kobieta
+        </label>
+        <label>
+            <input type="radio"
+                formControlName="sex"
+                value="1" />
+                Facet
+        </label>
+    </label>
+    <br />
+    <button type="submit"
+        [disabled]="myFormGroup.invalid">
+        Zapisz
+    </button>
+</form>
+
+<pre>
+    {{ myFormGroup.value | json }}
+</pre>
